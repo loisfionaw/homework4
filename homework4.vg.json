@@ -1,0 +1,115 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "covid_au.csv"
+      },
+    "vconcat" : [
+      {
+        "width": "container",
+        "height": 400,
+        "data" : {
+          "url" : "covid_au.csv"
+        },
+        "transform": [
+          {
+            "filter": {"selection": "stateFilter"}
+          }
+        ],
+       
+        "mark" : "line",
+        "title": "Confirmed COVID-19 Cases",
+        "encoding" : {
+          "x" : {
+            "field" : "date",
+            "type" : "temporal",
+            "axis" : {"title" : "", "format" : "%Y-%b"}
+          },
+          "y" : {
+            "field" : "confirmed",
+            "type" : "quantitative",
+            "title" : "confirmed cases",
+            "scale" : {"zero" : true}
+          },
+          "color" : {
+            "field" : "state",
+            "type" : "nominal",
+            "title" : "state"
+          },
+          
+          "tooltip": [
+            {"field": "date", "type": "temporal", "title": "Date"},
+            {"field": "confirmed", "type": "quantitative", "title": "Confirmed Cases"},
+            {"field": "state", "type": "nominal", "title": "State"}
+          ]
+          },
+          "selection": {
+            "stateFilter": {
+              "type": "multi",
+              "fields": ["state"],
+              "bind": "legend"  
+            },
+            "brush" : {
+              "type" : "interval"
+            }
+          }
+        },
+      {
+        "width": "container",
+        "height": 400,
+        "data": {
+          "url": "covid_au.csv"
+        },
+        "transform": [
+          {"filter": {"selection": "brush"}},
+          {"filter": {"selection": "stateFilter"}}
+        ],
+        "mark": "area",
+        "title": "Confirmed Cases per state",
+        "encoding": {
+          "x": {
+            "field": "date",
+            "type": "temporal",
+            "axis": {"title": "", "format": "%Y-%b"}
+          },
+          "y": {
+            "field": "confirmed",
+            "type": "quantitative",
+            "title": "confirmed cases",
+            "scale": {"zero": true}
+          },
+          "color": {
+            "field": "state",
+            "type": "nominal",
+            "title": "state"
+          },
+          "tooltip": [
+            {"field": "date", "type": "temporal", "title": "Date"},
+            {"field": "confirmed", "type": "quantitative", "title": "Confirmed Cases"},
+            {"field": "state", "type": "nominal", "title": "State"}
+          ]            }
+        
+     
+     
+    }
+
+        
+      
+        
+        
+        
+      
+ 
+      
+
+    
+    ]
+,
+"config" : {"title": {
+  "font" : "sans-serif",
+  "fontSize" : 14
+}}
+  }
+  
+  
+  
+  
